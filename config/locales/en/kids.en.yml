@@ -1,0 +1,127 @@
+en:
+  kids: &kids
+    label: &label Kids
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece ti ti-gift
+    buttons: &buttons
+      new: Add New Kid
+      create: Create Kid
+      edit: Edit Kid
+      update: Update Kid
+      destroy: Remove Kid
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{kid_name}? This will also remove it's associated data. This can't be undone.
+    fields: &fields
+      id:
+        heading: Kid ID
+      team_id:
+        heading: Team ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+      sex:
+        _: &sex Sex
+        label: *sex
+        heading: *sex
+        options:
+          one: One
+          two: Two
+          three: Three
+      phone:
+        _: &phone Phone
+        label: *phone
+        heading: *phone
+      grade:
+        _: &grade Grade
+        label: *grade
+        heading: *grade
+        placeholder: None
+        options:
+          one: One
+          two: Two
+          three: Three
+      attendance_status:
+        _: &attendance_status Attendance Status
+        label: *attendance_status
+        heading: *attendance_status
+        options:
+          one: One
+          two: Two
+          three: Three
+      attendance_note:
+        _: &attendance_note Attendance Note
+        label: *attendance_note
+        heading: *attendance_note
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Kids"
+      index: "List Kids"
+      create: "Add a New Kid"
+      member_actions: "Actions for an Individual Kid"
+      show: "Retrieve a Kid"
+      update: "Update a Kid"
+      destroy: "Delete a Kid"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Kids"
+      contexts:
+        team:
+          header: Kids
+          description: Below is a list of Kids that have been added for %{team_name}.
+          description_empty: No Kids have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{kid_name}"
+      header: Kid Details
+      description: Below are the details we have for %{kid_name}.
+      manage_description: You'll also find options for updating these details or removing %{kid_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Kid for %{team_name}"
+      header: New Kid Details
+      description: Please provide the details of the new Kid you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{kid_name}"
+      header: Edit Kid Details
+      description: You can update the details or settings for %{kid_name} below.
+      form: *form
+    notifications:
+      created: Kid was successfully created.
+      updated: Kid was successfully updated.
+      destroyed: Kid was successfully destroyed.
+  account:
+    kids: *kids
+  activerecord:
+    attributes:
+      kid:
+        name: *name
+        sex: *sex
+        phone: *phone
+        grade: *grade
+        attendance_status: *attendance_status
+        attendance_note: *attendance_note
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

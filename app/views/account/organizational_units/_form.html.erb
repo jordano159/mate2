@@ -5,6 +5,8 @@
     <%= render 'shared/fields/text_field', method: :name, options: {autofocus: true} %>
     <%= render 'shared/fields/text_field', method: :level_name %>
     <%= render 'shared/fields/text_field', method: :level_index %>
+    <%= render 'shared/fields/super_select', method: :kid_ids, html_options: {multiple: true},
+      choices: @organizational_unit.valid_kids.map { |kid| [kid.label_string, kid.id] } %>
     <%# 🚅 super scaffolding will insert new fields above this line. %>
   <% end %>
 

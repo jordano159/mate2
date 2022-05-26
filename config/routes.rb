@@ -67,6 +67,7 @@ Rails.application.routes.draw do
         end
 
         resources :organizational_units
+        resources :kids
       end
     end
   end

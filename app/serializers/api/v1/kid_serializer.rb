@@ -1,12 +1,14 @@
-class Api::V1::OrganizationalUnitSerializer < Api::V1::ApplicationSerializer
-  set_type "organizational_unit"
+class Api::V1::KidSerializer < Api::V1::ApplicationSerializer
+  set_type "kid"
 
   attributes :id,
     :team_id,
     :name,
-    :level_name,
-    :level_index,
-    :kid_ids,
+    :sex,
+    :phone,
+    :grade,
+    :attendance_status,
+    :attendance_note,
     # 🚅 super scaffolding will insert new fields above this line.
     :created_at,
     :updated_at

@@ -21,6 +21,7 @@ class Api::V1::OrganizationalUnitsEndpointTest < Api::Test
       assert_equal organizational_unit_data['name'], organizational_unit.name
       assert_equal organizational_unit_data['level_name'], organizational_unit.level_name
       assert_equal organizational_unit_data['level_index'], organizational_unit.level_index
+      assert_equal organizational_unit_data['kid_ids'], organizational_unit.kid_ids
       # 🚅 super scaffolding will insert new fields above this line.
 
       assert_equal organizational_unit_data["team_id"], organizational_unit.team_id

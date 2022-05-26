@@ -35,6 +35,12 @@ en:
         _: &level_index Level Index
         label: *level_index
         heading: *level_index
+      kid_ids: &kids
+        _: &kid_ids Kids
+        label: *kid_ids
+        heading: *kid_ids
+        placeholder: None
+      kids: *kids
       # 🚅 super scaffolding will insert new fields above this line.
       created_at:
         _: &created_at Added
@@ -94,6 +100,7 @@ en:
         name: *name
         level_name: *level_name
         level_index: *level_index
+        kid_ids: *kid_ids
         # 🚅 super scaffolding will insert new activerecord attributes above this line.
         created_at: *created_at
         updated_at: *updated_at

@@ -1,5 +1,6 @@
 default:
   models:
+    Kid: read
     OrganizationalUnit: read
     Team: read
     Membership:
@@ -29,6 +30,7 @@ admin:
     - admin
     - editor
   models:
+    Kid: manage
     OrganizationalUnit: manage
     Team: manage
     Membership: manage

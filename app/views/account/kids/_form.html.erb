@@ -1,0 +1,23 @@
+<%= form_with model: kid, url: (kid.persisted? ? [:account, kid] : [:account, @team, :kids]), local: true, class: 'form' do |form| %>
+  <%= render 'account/shared/forms/errors', form: form %>
+
+  <% with_field_settings form: form do %>
+    <%= render 'shared/fields/text_field', method: :name, options: {autofocus: true} %>
+    <%= render 'shared/fields/buttons', method: :sex %>
+    <%= render 'shared/fields/phone_field', method: :phone %>
+    <%= render 'shared/fields/super_select', method: :grade %>
+    <%= render 'shared/fields/buttons', method: :attendance_status %>
+    <%= render 'shared/fields/text_field', method: :attendance_note %>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+  <% end %>
+
+  <div class="buttons">
+    <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+    <% if form.object.persisted? %>
+    <%= link_to t('global.buttons.cancel'), [:account, kid], class: "button-secondary" %>
+    <% else %>
+    <%= link_to t('global.buttons.cancel'), [:account, @team, :kids], class: "button-secondary" %>
+    <% end %>
+  </div>
+
+<% end %>

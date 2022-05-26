@@ -1,19 +1,21 @@
-class Api::V1::OrganizationalUnitsEndpoint < Api::V1::Root
+class Api::V1::KidsEndpoint < Api::V1::Root
   helpers do
     params :team_id do
       requires :team_id, type: Integer, allow_blank: false, desc: "Team ID"
     end
 
     params :id do
-      requires :id, type: Integer, allow_blank: false, desc: "Organizational Unit ID"
+      requires :id, type: Integer, allow_blank: false, desc: "Kid ID"
     end
 
-    params :organizational_unit do
+    params :kid do
       optional :name, type: String, desc: Api.heading(:name)
-      optional :level_name, type: String, desc: Api.heading(:level_name)
-      optional :level_index, type: String, desc: Api.heading(:level_index)
+      optional :sex, type: String, desc: Api.heading(:sex)
+      optional :phone, type: String, desc: Api.heading(:phone)
+      optional :grade, type: String, desc: Api.heading(:grade)
+      optional :attendance_status, type: String, desc: Api.heading(:attendance_status)
+      optional :attendance_note, type: String, desc: Api.heading(:attendance_note)
       # 🚅 super scaffolding will insert new fields above this line.
-      optional :kid_ids, type: Array, desc: Api.heading(:kid_ids)
       # 🚅 super scaffolding will insert new arrays above this line.
 
       # 🚅 super scaffolding will insert processing for new fields above this line.
@@ -22,7 +24,7 @@ class Api::V1::OrganizationalUnitsEndpoint < Api::V1::Root
 
   resource "teams", desc: Api.title(:collection_actions) do
     after_validation do
-      load_and_authorize_api_resource OrganizationalUnit
+      load_and_authorize_api_resource Kid
     end
 
     #
@@ -35,9 +37,9 @@ class Api::V1::OrganizationalUnitsEndpoint < Api::V1::Root
     end
     oauth2
     paginate per_page: 100
-    get "/:team_id/organizational_units" do
-      @paginated_organizational_units = paginate @organizational_units
-      render @paginated_organizational_units, serializer: Api.serializer
+    get "/:team_id/kids" do
+      @paginated_kids = paginate @kids
+      render @paginated_kids, serializer: Api.serializer
     end
 
     #
@@ -47,22 +49,22 @@ class Api::V1::OrganizationalUnitsEndpoint < Api::V1::Root
     desc Api.title(:create), &Api.create_desc
     params do
       use :team_id
-      use :organizational_unit
+      use :kid
     end
     route_setting :api_resource_options, permission: :create
     oauth2 "write"
-    post "/:team_id/organizational_units" do
-      if @organizational_unit.save
-        render @organizational_unit, serializer: Api.serializer
+    post "/:team_id/kids" do
+      if @kid.save
+        render @kid, serializer: Api.serializer
       else
-        record_not_saved @organizational_unit
+        record_not_saved @kid
       end
     end
   end
 
-  resource "organizational_units", desc: Api.title(:member_actions) do
+  resource "kids", desc: Api.title(:member_actions) do
     after_validation do
-      load_and_authorize_api_resource OrganizationalUnit
+      load_and_authorize_api_resource Kid
     end
 
     #
@@ -76,7 +78,7 @@ class Api::V1::OrganizationalUnitsEndpoint < Api::V1::Root
     oauth2
     route_param :id do
       get do
-        render @organizational_unit, serializer: Api.serializer
+        render @kid, serializer: Api.serializer
       end
     end
 
@@ -87,16 +89,16 @@ class Api::V1::OrganizationalUnitsEndpoint < Api::V1::Root
     desc Api.title(:update), &Api.update_desc
     params do
       use :id
-      use :organizational_unit
+      use :kid
     end
     route_setting :api_resource_options, permission: :update
     oauth2 "write"
     route_param :id do
       put do
-        if @organizational_unit.update(declared(params, include_missing: false))
-          render @organizational_unit, serializer: Api.serializer
+        if @kid.update(declared(params, include_missing: false))
+          render @kid, serializer: Api.serializer
         else
-          record_not_saved @organizational_unit
+          record_not_saved @kid
         end
       end
     end
@@ -113,7 +115,7 @@ class Api::V1::OrganizationalUnitsEndpoint < Api::V1::Root
     oauth2 "delete"
     route_param :id do
       delete do
-        render @organizational_unit.destroy, serializer: Api.serializer
+        render @kid.destroy, serializer: Api.serializer
       end
     end
   end
