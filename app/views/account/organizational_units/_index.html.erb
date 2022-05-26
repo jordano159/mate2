@@ -1,0 +1,69 @@
+<% team = @team || @team %>
+<% context ||= team %>
+<% collection ||= :organizational_units %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% organizational_units = organizational_units.order(:id) unless has_order?(organizational_units) %>
+<% pagy, organizational_units = pagy(organizational_units, page_param: :organizational_units_page) %>
+
+<%= render 'account/shared/box', pagy: pagy do |p| %>
+  <% p.content_for :title, t(".contexts.#{context.class.name.underscore}.header") %>
+  <% p.content_for :description do %>
+    <%= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless organizational_units.any?}") %>
+  <% end %>
+
+  <% p.content_for :table do %>
+    <% if organizational_units.any? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= t('.fields.name.heading') %></th>
+            <th><%= t('.fields.level_name.heading') %></th>
+            <th><%= t('.fields.level_index.heading') %></th>
+            <%# 🚅 super scaffolding will insert new field headers above this line. %>
+            <th><%= t('.fields.created_at.heading') %></th>
+            <th class="text-right"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% organizational_units.each do |organizational_unit| %>
+            <% with_attribute_settings object: organizational_unit do %>
+              <tr data-id="<%= organizational_unit.id %>">
+                <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, organizational_unit] %></td>
+                <td><%= render 'shared/attributes/text', attribute: :level_name %></td>
+                <td><%= render 'shared/attributes/text', attribute: :level_index %></td>
+                <%# 🚅 super scaffolding will insert new fields above this line. %>
+                <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+                <td class="buttons">
+                  <% unless hide_actions %>
+                    <% if can? :edit, organizational_unit %>
+                      <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, organizational_unit], class: 'button-secondary button-smaller' %>
+                    <% end %>
+                    <% if can? :destroy, organizational_unit %>
+                      <%= button_to t('.buttons.shorthand.destroy'), [:account, organizational_unit], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(organizational_unit)) }, class: 'button-secondary button-smaller' %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+
+  <% p.content_for :actions do %>
+    <% unless hide_actions %>
+      <% if context == team %>
+        <% if can? :create, OrganizationalUnit.new(team: team) %>
+          <%= link_to t('.buttons.new'), [:new, :account, team, :organizational_unit], class: "#{first_button_primary(:organizational_unit)} new" %>
+        <% end %>
+      <% end %>
+
+      <% unless hide_back %>
+        <%= link_to t('global.buttons.back'), [:account, context], class: "#{first_button_primary(:organizational_unit)} back" %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

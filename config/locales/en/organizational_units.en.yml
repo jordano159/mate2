@@ -1,0 +1,99 @@
+en:
+  organizational_units: &organizational_units
+    label: &label Organizational Units
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece ti ti-gift
+    buttons: &buttons
+      new: Add New Organizational Unit
+      create: Create Organizational Unit
+      edit: Edit Organizational Unit
+      update: Update Organizational Unit
+      destroy: Remove Organizational Unit
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{organizational_unit_name}? This will also remove it's associated data. This can't be undone.
+    fields: &fields
+      id:
+        heading: Organizational Unit ID
+      team_id:
+        heading: Team ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+      level_name:
+        _: &level_name Level Name
+        label: *level_name
+        heading: *level_name
+      level_index:
+        _: &level_index Level Index
+        label: *level_index
+        heading: *level_index
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Organizational Units"
+      index: "List Organizational Units"
+      create: "Add a New Organizational Unit"
+      member_actions: "Actions for an Individual Organizational Unit"
+      show: "Retrieve a Organizational Unit"
+      update: "Update a Organizational Unit"
+      destroy: "Delete a Organizational Unit"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Organizational Units"
+      contexts:
+        team:
+          header: Organizational Units
+          description: Below is a list of Organizational Units that have been added for %{team_name}.
+          description_empty: No Organizational Units have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{organizational_unit_name}"
+      header: Organizational Unit Details
+      description: Below are the details we have for %{organizational_unit_name}.
+      manage_description: You'll also find options for updating these details or removing %{organizational_unit_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Organizational Unit for %{team_name}"
+      header: New Organizational Unit Details
+      description: Please provide the details of the new Organizational Unit you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{organizational_unit_name}"
+      header: Edit Organizational Unit Details
+      description: You can update the details or settings for %{organizational_unit_name} below.
+      form: *form
+    notifications:
+      created: Organizational Unit was successfully created.
+      updated: Organizational Unit was successfully updated.
+      destroyed: Organizational Unit was successfully destroyed.
+  account:
+    organizational_units: *organizational_units
+  activerecord:
+    attributes:
+      organizational_unit:
+        name: *name
+        level_name: *level_name
+        level_index: *level_index
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at
