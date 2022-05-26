@@ -53,6 +53,7 @@ en:
         label: *attendance_status
         heading: *attendance_status
         options:
+          0: Zero
           one: One
           two: Two
           three: Three

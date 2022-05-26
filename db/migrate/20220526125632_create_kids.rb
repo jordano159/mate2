@@ -6,7 +6,7 @@ class CreateKids < ActiveRecord::Migration[7.0]
       t.string :sex
       t.string :phone
       t.string :grade
-      t.integer :attendace_status, default: 0
+      t.integer :attendance_status, default: 0
       t.string :attendance_note
 
       t.timestamps

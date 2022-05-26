@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_123802) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_130202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_123802) do
     t.datetime "updated_at", precision: nil, null: false
     t.integer "team_id"
     t.index ["team_id"], name: "index_invitations_on_team_id"
+  end
+
+  create_table "kid_organizational_units", force: :cascade do |t|
+    t.bigint "organizational_unit_id", null: false
+    t.bigint "kid_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kid_id"], name: "index_kid_organizational_units_on_kid_id"
+    t.index ["organizational_unit_id"], name: "index_kid_organizational_units_on_organizational_unit_id"
+  end
+
+  create_table "kids", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.string "name"
+    t.string "sex"
+    t.string "phone"
+    t.string "grade"
+    t.integer "attendance_status", default: 0
+    t.string "attendance_note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_kids_on_team_id"
   end
 
   create_table "memberships", id: :serial, force: :cascade do |t|
@@ -344,6 +366,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_123802) do
   add_foreign_key "integrations_stripe_installations", "oauth_stripe_accounts"
   add_foreign_key "integrations_stripe_installations", "teams"
   add_foreign_key "invitations", "teams"
+  add_foreign_key "kid_organizational_units", "kids"
+  add_foreign_key "kid_organizational_units", "organizational_units"
+  add_foreign_key "kids", "teams"
   add_foreign_key "memberships", "invitations"
   add_foreign_key "memberships", "memberships", column: "added_by_id"
   add_foreign_key "memberships", "oauth_applications", column: "platform_agent_of_id"
