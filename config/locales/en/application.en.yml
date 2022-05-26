@@ -1,8 +1,8 @@
 en:
   application:
-    name: Untitled Application
-    owner: Unidentified Developer
-    description: "You can update this description in `config/locales/en/application.en.yml`."
-    keywords: untitled application seo keywords
-    support_email: change.me@localhost
-    key: untitled_application
+    name: Mate 2.0
+    owner: Jordan Shefner
+    description: "Attendance Tracking"
+    keywords: mate 2.0 seo keywords attendance
+    support_email: codecircle13@gmail.com
+    key: mate_2_0
