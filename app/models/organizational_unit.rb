@@ -19,6 +19,7 @@ class OrganizationalUnit < ApplicationRecord
 
   # 🚅 add callbacks above.
 
+  acts_as_tree order: 'level_index', numeric_order: true
   # 🚅 add delegations above.
 
   def valid_kids

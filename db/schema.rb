@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_130202) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_140654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -193,6 +193,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_130202) do
     t.index ["user_id"], name: "index_oauth_stripe_accounts_on_user_id"
   end
 
+  create_table "organizational_unit_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id", null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations", null: false
+    t.index ["ancestor_id", "descendant_id", "generations"], name: "organizational_unit_anc_desc_idx", unique: true
+    t.index ["descendant_id"], name: "organizational_unit_desc_idx"
+  end
+
   create_table "organizational_units", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.string "name"
@@ -200,6 +208,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_130202) do
     t.integer "level_index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_id"
     t.index ["team_id"], name: "index_organizational_units_on_team_id"
   end
 
