@@ -1,7 +1,7 @@
 {
-  "name": "New Bullet Train Application",
-  "description": "The Ruby on Rails SaaS-in-a-Box",
-  "repository": "https://github.com/bullet-train-co/bullet_train",
+  "name": "Mate 2.0",
+  "description": "Attendance Tracking",
+  "repository": "https://github.com/jordano159/mate2",
   "logo": "https://tailwind.bullettrain.co/heroku-logo.png",
   "keywords": ["ruby", "rails"],
   "buildpacks": [
@@ -19,10 +19,9 @@
     }
   },
   "addons": [
-    "heroku-postgresql:standard-0",
-    "heroku-redis:premium-0",
-    "memcachier:100",
-    "hdrive:starter-s3",
+    "heroku-postgresql:hobby-dev",
+    "heroku-redis:hobby-dev",
+    "memcachier:developer",
     "cloudinary:starter",
     "scheduler:standard",
     "rails-autoscale:free",
