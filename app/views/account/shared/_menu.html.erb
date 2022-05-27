@@ -5,6 +5,7 @@
     <% # added by super scaffolding. %>
     <%= render 'account/kids/menu_item' %>
     <%= render 'account/organizational_units/menu_item' %>
+    <%= link_to "מפעל חדש", new_account_team_organizational_unit_path(root: "true", team_id: current_user.current_team_id) %>
   <% end %>
 
   <%= render 'account/shared/menu/section', title: t('menus.main.labels.integrations') do %>
