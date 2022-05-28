@@ -24,7 +24,7 @@ class OrganizationalUnit < ApplicationRecord
   acts_as_tree order: 'level_index', numeric_order: true
 
   jsonb_accessor :preferences,
-    organizational_unit_names: :string,
+    organizational_unit_names: [:string, array: true, default: []],
     number_of_organizational_unit_levels: :integer
 
   def valid_kids

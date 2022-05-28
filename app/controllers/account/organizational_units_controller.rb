@@ -67,8 +67,10 @@ class Account::OrganizationalUnitsController < Account::ApplicationController
       :name,
       :level_name,
       :level_index,
+      :number_of_organizational_unit_levels, 
       # 🚅 super scaffolding will insert new fields above this line.
       kid_ids: [],
+      organizational_unit_names: [],
       # 🚅 super scaffolding will insert new arrays above this line.
     )
 

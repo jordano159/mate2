@@ -3,9 +3,13 @@
 
   <% with_field_settings form: form do %>
     <%= render 'shared/fields/text_field', method: :name, options: {autofocus: true} %>
-    <% if params[:root] == "true" %>
+    <% if params[:root] == "true" || form.object.level_index == 0 %>
       <%= render 'shared/fields/text_field', method: :level_name, options: {value: "מפעל"} %>
-      <%= render 'shared/fields/text_field', method: :level_index, options: {value: 0}, other_options: {hide_label: true} %>
+      <%= render 'shared/fields/text_field', method: :level_index, options: {value: 0}, other_options: {hide_label: "true"} %>
+      <%= render 'shared/fields/text_field', method: :number_of_organizational_unit_levels %>
+      <%= render 'shared/fields/super_select', method: :organizational_unit_names, html_options: {multiple: true},
+        choices: ["מפעל", "ציר", "ראש", "קבוצה"] %>
+
     <% else %>
       <%= render 'shared/fields/text_field', method: :level_name %>
       <%= render 'shared/fields/text_field', method: :level_index %>
