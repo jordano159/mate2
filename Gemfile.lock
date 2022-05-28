@@ -345,6 +345,10 @@ GEM
     json (2.6.2)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
+    jsonb_accessor (1.3.4)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      pg (>= 0.18.1)
     jwt (2.3.0)
     knapsack_pro (3.2.1)
       rake
@@ -639,6 +643,7 @@ DEPENDENCIES
   honeybadger
   jbuilder
   jsbundling-rails
+  jsonb_accessor (~> 1)
   knapsack_pro
   letter_opener
   magic_test

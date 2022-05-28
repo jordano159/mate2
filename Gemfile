@@ -170,3 +170,4 @@ gem "wine_bouncer", github: "bullet-train-co/wine_bouncer"
 # 🚅 super scaffolding will insert new oauth providers above this line.
 
 gem 'closure_tree'
+gem "jsonb_accessor", "~> 1"

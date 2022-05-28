@@ -19,8 +19,13 @@ class OrganizationalUnit < ApplicationRecord
 
   # 🚅 add callbacks above.
 
-  acts_as_tree order: 'level_index', numeric_order: true
   # 🚅 add delegations above.
+
+  acts_as_tree order: 'level_index', numeric_order: true
+
+  jsonb_accessor :preferences,
+    organizational_unit_names: :string,
+    number_of_organizational_unit_levels: :integer
 
   def valid_kids
     # raise "please review and implement `valid_kids` in `app/models/organizational_unit.rb`."
