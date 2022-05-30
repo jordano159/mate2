@@ -66,7 +66,12 @@ Rails.application.routes.draw do
           resources :applications
         end
 
-        resources :organizational_units
+        resources :organizational_units do
+          member do
+            get :root_setup
+            post :root_setup_update
+          end
+        end
         resources :kids
       end
     end

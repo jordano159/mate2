@@ -83,6 +83,11 @@ en:
       header: New Organizational Unit Details
       description: Please provide the details of the new Organizational Unit you'd like to add to %{team_name}.
       form: *form
+    root_setup:
+      section: "Setup Root Organizational Unit for %{team_name}"
+      header: Root Organizational Unit Details
+      description: Please provide the details of the Root Organizational Unit you're adding to %{team_name}.
+      form: *form
     edit:
       section: "%{organizational_unit_name}"
       header: Edit Organizational Unit Details

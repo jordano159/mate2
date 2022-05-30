@@ -1,0 +1,8 @@
+<%= form_with url: root_setup_update_account_organizational_unit_path do |form| %>
+  <% organizational_unit.organizational_unit_names.reject(&:blank?).drop(1).each do |name| %>
+    <%= form.label :organizational_unit_amount, "כמות של יחידות ארגוניות ב#{name}" %>
+    <%= form.number_field :organizational_unit_amount, name: "organizational_unit_amount[#{name}_number]", id:"organizational_unit_amount_#{name}" %>
+    <br>
+  <% end %>
+  <%= form.submit "יצירה ועדכון" %>
+<% end %>

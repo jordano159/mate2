@@ -59,6 +59,16 @@ class Account::OrganizationalUnitsController < Account::ApplicationController
     end
   end
 
+  def root_setup
+    @team = current_user.current_team
+    @organizational_unit = @team.organizational_units.find(params[:id])
+  end
+
+  def root_setup_update
+    @team = current_user.current_team
+    redirect_to [:account, @team, :organizational_units], notice: I18n.t("organizational_units.notifications.root_setup_updated")
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.
